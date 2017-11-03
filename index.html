@@ -1,0 +1,2363 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>百度新闻</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+
+		<style>
+			.topBar {
+				height: 32px;
+				border-bottom: 1px solid #ebebeb;
+			}
+			
+			.userBar ul,
+			.headLink ul {
+				float: right;
+			}
+			
+			.userBar li,
+			.headLink li {
+				float: left;
+				margin-right: 22px;
+			}
+			
+			.userBar li a,
+			.headLink a {
+				font: 13px/32px arial;
+				text-decoration: underline;
+			}
+			
+			.headLink a {
+				font-weight: 700;
+			}
+			
+			.header .line {
+				position: absolute;
+				top: 9px;
+				right: 294px;
+				height: 14px;
+				width: 1px;
+				background-color: #ebebeb;
+			}
+			
+			.head {
+				height: 65px;
+				padding-top: 31px;
+			}
+			
+			.head .logo {
+				float: left;
+				width: 150px;
+			}
+			
+			.head .search {
+				width: 940px;
+				height: 65px;
+				line-height: 30px;
+				font-size: 16px;
+			}
+			
+			.search .ipt {
+				float: left;
+				width: 534px;
+				height: 38px;
+				font-size: 12px;
+				cursor: pointer;
+			}
+			
+			.search label {
+				margin-right: 21px;
+			}
+			
+			.search .word {
+				width: 525px;
+				height: 38px;
+				line-height: 38px;
+				padding-left: 8px;
+				font-size: 16px;
+				border: 1px solid #b8b8b8;
+				overflow: hidden;
+			}
+			
+			.search .btn {
+				float: left;
+				width: 104px;
+				height: 40px;
+				font-size: 16px;
+				color: #fff;
+				background-color: #38f;
+				font-weight: bold;
+				cursor: pointer;
+				border: 0;
+			}
+			
+			.search .help {
+				float: left;
+				font-size: 13px;
+				padding: 5px;
+			}
+			
+			.search .help a {
+				margin-left: 10px;
+				text-decoration: underline;
+			}
+			
+			.menu {
+				width: 100%;
+				height: 40px;
+				background-color: #01204f;
+			}
+			
+			.nav li {
+				float: left;
+			}
+			
+			.nav li a {
+				font-size: 14px;
+				line-height: 40px;
+				color: #fff;
+				padding: 0 10px;
+				font-weight: bold;
+			}
+			
+			.menu .nav .current {
+				background-color: #c00;
+			}
+			
+			.nav li.index {
+				padding-left: 20px;
+				background: url(img/icon-index_2c3bd00.png) no-repeat;
+				background-position: 6px 7px;
+			}
+			
+			.nav li a:hover {
+				text-decoration: none;
+			}
+			
+			.nav li:hover {
+				cursor: pointer;
+				background-color: #c00;
+			}
+			
+			.column {
+				margin-top: 12px;
+				margin-bottom: 31px;
+			}
+			
+			.column-l {
+				float: left;
+				width: 390px;
+			}
+			
+			.column .head-tabs {
+				position: relative;
+			}
+			
+			.head-tabs li {
+				float: left;
+				height: 36px;
+				line-height: 36px;
+				text-align: center;
+			}
+			
+			.head-tabs li a {
+				padding: 0 20px;
+				font-size: 18px;
+				font-weight: 700;
+				color: #222;
+				text-decoration: none;
+			}
+			
+			.head-tabs li a.first {
+				border-right: 1px solid #e5e5e5;
+			}
+			
+			.head-tabs li.active {
+				border-bottom: 2px solid #2f63ba;
+			}
+			
+			.head-tabs li.active a {
+				color: #2f63ba;
+			}
+			
+			.head-tabs .tabs-login {
+				position: absolute;
+				width: 100px;
+				height: 19px;
+				background: url(img/icon-login_bcacef5.png) no-repeat 0 -38px;
+				right: 0;
+				top: 9px;
+			}
+			
+			#two {
+				display: none;
+				position: relative;
+			}
+			
+			.feed .feed-item {
+				height: 65px;
+				padding-top: 20px;
+				border-bottom: 1px solid #f2f2f2;
+				font-size: 12px;
+			}
+			
+			.feed .feed-img {
+				float: left;
+				margin-right: 10px;
+			}
+			
+			.feed .feed-img img {
+				width: 95px;
+				height: 66px;
+			}
+			
+			.feed .feed-para {
+				float: right;
+				width: 280px;
+				height: 66px;
+			}
+			
+			.feed .feed-para a {
+				font-size: 16px;
+				font-weight: 500;
+				line-height: 22px;
+				text-decoration: none;
+				color: #222;
+			}
+			
+			.feed .feed-para a:hover {
+				color: #369;
+			}
+			
+			.feed-item .feed-item-txt {
+				font-size: 12px;
+				line-height: 18px;
+				color: #999;
+			}
+			
+			.feed-item h3 a {
+				font-size: 16px;
+				text-decoration: none;
+			}
+			
+			.hotnews,
+			.ullist {
+				margin-top: 4px;
+			}
+			
+			.hotnews li,
+			.ullist li {
+				position: relative;
+				padding-left: 10px;
+				overflow: hidden;
+				line-height: 24px;
+				margin-top: 4px;
+			}
+			
+			.hotnews li a,
+			.ullist li a {
+				font: 400 16px/24px "\5FAE\8F6F\96C5\9ED1", tahoma;
+			}
+			
+			.ullist li a {
+				font-size: 14px;
+			}
+			
+			.hotnews li:first-child strong a {
+				font: 700 18px/24px "\5FAE\8F6F\96C5\9ED1", tahoma;
+				margin-top: 10px;
+			}
+			
+			.ullist li:first-child strong a {
+				font-size: 16px;
+				font-weight: bold;
+			}
+			
+			.hotnews .dot,
+			.ullist .dot {
+				position: absolute;
+				left: 0;
+				top: 10px;
+				display: block;
+				width: 5px;
+				height: 5px;
+				background-color: #da4453;
+			}
+			
+			.ullist .dot {
+				width: 3px;
+				height: 3px;
+				background-color: deepskyblue;
+			}
+			
+			.ullist .first {
+				width: 5px;
+				height: 5px;
+				background-color: #da4453;
+			}
+			
+			.column-r {
+				float: right;
+				width: 560px;
+			}
+			
+			.imgplayer {
+				position: relative;
+			}
+			
+			.column-r .imgplayer img {
+				width: 560px;
+				height: 305px;
+			}
+			
+			.imgplayer-control .prev {
+				position: absolute;
+				left: 15px;
+				top: 43%;
+				width: 40px;
+				height: 40px;
+				background: url(img/icon-carousel_8fef694.png) no-repeat -16px -100px;
+			}
+			
+			.imgplayer-control .prev:hover,
+			.imgplayer-control .next:hover {
+				background-color: rgba(0, 0, 0, .5);
+			}
+			
+			.imgplayer-control .next {
+				position: absolute;
+				right: 15px;
+				top: 43%;
+				width: 40px;
+				height: 40px;
+				background: url(img/icon-carousel_8fef694.png) no-repeat -162px -100px;
+			}
+			
+			.imgplayer .imgview {
+				height: 305px;
+				overflow: hidden;
+			}
+			
+			.imgplayer .imgmask {
+				position: absolute;
+				z-index: 86;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 66px;
+				background: url(img/icon-carousel_8fef694.png) no-repeat -9px 0;
+			}
+			
+			.imgplayer .imgtxt {
+				position: absolute;
+				z-index: 87;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 66px;
+				padding-left: 10px;
+				text-align: left;
+				background: 0 0;
+				overflow: hidden;
+			}
+			
+			.imgtxt a {
+				display: block;
+				height: 66px;
+				font-size: 16px;
+				font-weight: 500;
+				line-height: 92px;
+				text-decoration: none;
+				letter-spacing: 1px;
+				color: #fff;
+			}
+			
+			.imgplayer .imgnav {
+				position: absolute;
+				z-index: 90;
+				right: 18px;
+				bottom: 13px;
+				overflow: hidden;
+				height: 12px;
+			}
+			
+			.imgplayer .imgnav span {
+				float: left;
+				width: 9px;
+				height: 8px;
+				border-radius: 50%;
+				line-height: 10px;
+				margin-right: 5px;
+				margin-top: 1px;
+				text-align: center;
+				cursor: pointer;
+				background: url(img/icon-dot_f3b2695.png) no-repeat -25px -6px;
+			}
+			
+			.imgplayer .imgnav .current {
+				width: 10px;
+				height: 10px;
+				margin-top: 0;
+				background-position: -5px -5px;
+			}
+			
+			.column-r .hotword {
+				width: 560px;
+				height: 210px;
+				padding-top: 14px;
+			}
+			
+			.hotword .hd,
+			.baijia .hd,
+			.china .hd {
+				height: 26px;
+				line-height: 28px;
+				overflow: visible;
+			}
+			
+			.hotword .hd h3,
+			.baijia .hd h2,
+			.china .hd h3 {
+				position: relative;
+				float: left;
+				display: inline-block;
+				font-size: 16px;
+				background: url(img/icon-mark_6324efc.png) no-repeat right;
+				padding-right: 12px;
+			}
+			
+			.hotword .hd a,
+			.baijia .hd a,
+			.china .hd a {
+				color: #254282;
+				text-decoration: none;
+			}
+			
+			.china .hd a {
+				font-size: 20px;
+			}
+			
+			.column-r .hd .en,
+			.china .hd .en {
+				color: #999;
+				font: 500 12px/18px arial, sans-serif;
+			}
+			
+			.hotword .bd {
+				padding-top: 10px;
+			}
+			
+			.hotword .bd li {
+				float: left;
+				margin: 0 2px 2px 0;
+				background: #3064bb;
+				text-align: center;
+				width: 91px;
+				height: 88px;
+			}
+			
+			.hotword .bd li a {
+				display: inline-block;
+				color: #fff;
+				margin-top: 30px;
+				text-decoration: none;
+			}
+			
+			.hotword .bd li.current {
+				background: #6d91cf;
+				transition: color .3s;
+			}
+			
+			.hotword .bd .long {
+				width: 184px;
+				font-size: 18px;
+			}
+			
+			.baijia {
+				margin-top: 12px;
+			}
+			
+			.baijia .border {
+				border-bottom: 1px solid #dee2e6;
+			}
+			
+			.sub {
+				padding-left: 15px;
+			}
+			
+			.sub a,
+			.column .china .sub a {
+				font-size: 14px;
+				padding: 0 5px;
+				border-right: 1px solid #B8B8B8;
+			}
+			
+			.baijia .more {
+				background: url(img/icon-more_62ae436.png) no-repeat right;
+			}
+			
+			.column .more a {
+				font-size: 12px;
+				color: #ff4200;
+				font-weight: 700;
+				padding-right: 18px;
+			}
+			
+			.baijia-l-up {
+				float: left;
+				width: 240px;
+				margin-right: 20px;
+			}
+			
+			.baijia-l-up .imgarea {
+				height: 300px;
+			}
+			
+			.imgTop,
+			.imgBottom {
+				position: relative;
+			}
+			
+			.imgTop img {
+				width: 240px;
+				height: 160px;
+			}
+			
+			.imgBottom {
+				overflow: hidden;
+			}
+			
+			.baijia .imgBottom {
+				margin-top: 16px;
+			}
+			
+			.baijia .imgBottom img {
+				width: 112px;
+				height: 84px;
+			}
+			
+			.imgBottom img {
+				width: 136px;
+				height: 90px;
+			}
+			
+			.photo .imgBottom img {
+				width: 187px;
+				height: 125px;
+			}
+			
+			.baijia .imgBottom .imglist {
+				float: left;
+				width: 112px;
+				padding-right: 16px;
+			}
+			
+			.imgBottom .imglist {
+				float: left;
+				width: 136px;
+				padding-right: 16px;
+			}
+			
+			.photo .imgBottom .imglist {
+				width: 187px;
+				height: 165px;
+				padding-right: 0px;
+			}
+			
+			.imgTop .title {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 230px;
+				padding: 3px 5px 5px;
+				color: #fff;
+				background: rgba(0, 0, 0, .7);
+			}
+			
+			.imgTop .title:hover {
+				background: #000;
+				text-decoration: none;
+			}
+			
+			.imgBottom .txt {
+				float: left;
+				height: 27px;
+				padding: 1px 5px 6px;
+				background: #f6f7f8;
+				word-break: break-all;
+				word-wrap: break-word;
+				overflow: hidden;
+			}
+			
+			.imgBottom .txt:hover {
+				text-decoration: none;
+				color: #fff;
+				background: #3064bb;
+			}
+			
+			.photo .imgBottom .txt {
+				width: 177px;
+				text-align: center;
+				line-height: 34px;
+			}
+			
+			.photo .imgBottom a:hover {
+				color: #fff;
+				background: #3064bb;
+				text-decoration: none;
+			}
+			
+			.focusList {
+				width: 290px;
+				overflow: hidden;
+				word-break: break-all;
+				word-wrap: break-word;
+			}
+			
+			.focusList .ullist {
+				border-bottom: 1px dotted #ccc;
+			}
+			
+			.focusList .ullist li {
+				height: 28px;
+				margin: 0;
+				padding: 0;
+			}
+			
+			.focusList .ullist li strong a {
+				font-size: 14px;
+			}
+			
+			.focusList .ullist a {
+				font-size: 14px;
+			}
+			
+			.baijia-focus {
+				float: left;
+				width: 240px;
+			}
+			
+			.listnum {
+				display: inline-block;
+				width: 17px;
+				height: 14px;
+				line-height: 12px;
+				margin-right: 4px;
+				background: url(img/icon-nums_7f1b1d2.png) no-repeat;
+			}
+			
+			.focusList .hot {
+				padding-top: 10px;
+			}
+			
+			.focusList .hot li {
+				height: 32px;
+				line-height: 32px;
+			}
+			
+			.column .china {
+				position: relative;
+				height: 26px;
+				padding: 10px 0;
+				border-top: 2px solid #999;
+				border-bottom: 1px solid #dee2e6;
+				line-height: 28px;
+				margin-bottom: 15px;
+			}
+			
+			.city {
+				float: left;
+				height: 18px;
+				line-height: 18px;
+				font-size: 12px;
+				margin-left: 20px;
+				padding: 2px;
+				padding-right: 15px;
+				color: #fff;
+				background: url(img/arrow-down_6ce55cf.png) no-repeat 52px 10px;
+				background-color: #4372c1;
+			}
+			
+			.city_view {
+				background: #fff;
+				border: 1px solid #d8d8d8;
+				width: 356px;
+				height: 200px;
+				left: 0;
+				position: absolute;
+				top: 5px;
+				visibility: hidden;
+				z-index: 99;
+			}
+			
+			.city_list {
+				width: 328px;
+				height: 120px;
+				padding: 20px 0 20px 28px;
+				border-bottom: 1px solid #f2f2f2;
+				white-space: nowrap;
+			}
+			
+			.btn_back {
+				position: absolute;
+				bottom: 10px;
+				right: 8px;
+				font-size: 12px;
+				font-weight: 700;
+				text-decoration: none;
+				cursor: pointer;
+				color: #326699;
+				-webkit-font-smoothing: antialiased;
+			}
+			
+			.btn_close {
+				background: url(img/btn-close_056d682.png) no-repeat;
+				float: inherit;
+				width: 10px;
+				height: 10px;
+				position: absolute;
+				right: 7px;
+				top: 7px;
+				cursor: pointer;
+			}
+			
+			.city_view .city-tip {
+				position: absolute;
+				bottom: 10px;
+				left: 28px;
+				font-size: 12px;
+				color: #999;
+			}
+			
+			.city_list a:link,
+			.city_list a:visited {
+				float: left;
+				color: #326699;
+				font-size: 12px;
+				line-height: 25px;
+				padding-right: 22px;
+				text-decoration: none;
+			}
+			
+			.china .hd .more {
+				padding-left: 10px;
+				background: url(img/icon-more_7cf02b7.png) no-repeat right;
+			}
+			
+			.china .more a {
+				color: #7b7b7b;
+			}
+			
+			.mainTitle {
+				padding: 0 0 6px;
+				height: 24px;
+				line-height: 24px;
+			}
+			
+			.mainTitle h3 {
+				padding-left: 5px;
+				padding-right: 5px;
+				border-left: 2px solid #254282;
+				font-weight: 700;
+				font-size: 16px;
+				line-height: 18px;
+				color: #254282;
+				background: #fff;
+			}
+			
+			.photo {
+				width: 1018px;
+				padding-top: 15px;
+			}
+			
+			.footer {
+				background-color: #001e50;
+				padding-bottom: 10px;
+				color: #a3a9b5;
+			}
+			
+			.bot-left {
+				float: left;
+				width: 230px;
+				padding: 35px;
+				overflow: hidden;
+			}
+			
+			.footer .bot-title {
+				position: relative;
+				height: 50px;
+			}
+			
+			.icon {
+				width: 7px;
+				height: 7px;
+				background-color: #d54a51;
+				position: absolute;
+				margin-top: 13px;
+				line-height: 0;
+				top: -7px;
+			}
+			
+			.text {
+				font-size: 20px;
+				font-weight: 300;
+				margin-bottom: 20px;
+				text-align: left;
+				margin-left: 15px;
+				color: #fff;
+			}
+			
+			.qrcode .img {
+				float: left;
+				width: 95px;
+				height: 95px;
+			}
+			
+			.qrcode .img img {
+				width: 95px;
+				height: 95px;
+			}
+			
+			.qrcode .link {
+				width: 120px;
+				float: left;
+				margin-left: 15px;
+			}
+			
+			.qrcode .link a {
+				width: 100%;
+				height: 33px;
+				color: #fff;
+				background-color: #334b73;
+				border-radius: 3px;
+				text-align: center;
+				display: inline-block;
+				margin-top: 5px;
+				margin-bottom: 10px;
+				line-height: 33px;
+				text-decoration: none;
+			}
+			
+			.qrcode .info {
+				float: left;
+				width: 100%;
+				text-align: left;
+				color: #fff;
+				font-size: 18px;
+				font-weight: 300;
+				margin-top: 15px;
+			}
+			
+			.bot-center {
+				float: left;
+				width: 315px;
+				padding: 35px 30px;
+				overflow: hidden;
+			}
+			
+			.bot-center .item li {
+				width: 33%;
+				padding-top: 40px;
+				float: left;
+				line-height: 1;
+				text-align: center;
+				margin-bottom: 20px;
+			}
+			
+			.bot-center .items1 {
+				background: url(img/m0.png) no-repeat center top;
+			}
+			
+			.bot-center .items2 {
+				background: url(img/m1.png) no-repeat center top;
+			}
+			
+			.bot-center .items3 {
+				background: url(img/m2.png) no-repeat center top;
+			}
+			
+			.bot-center .items4 {
+				background: url(img/m3.png) no-repeat center top;
+			}
+			
+			.bot-center .items5 {
+				background: url(img/m4.png) no-repeat center top;
+			}
+			
+			.bot-center .items6 {
+				background: url(img/m5.png) no-repeat center top;
+			}
+			
+			.bot-center .item li a {
+				color: #a3a9b5;
+				font-size: 16px;
+				text-decoration: none;
+			}
+			
+			.bot-right {
+				float: left;
+				width: 279px;
+				padding: 35px 15px;
+				margin-bottom: -10px;
+				overflow: hidden;
+			}
+			
+			.bot-right ul {
+				margin-top: 10px;
+			}
+			
+			.bot-right li {
+				font-size: 14px;
+				margin-bottom: 25px;
+			}
+			
+			.copy {
+				text-align: center;
+				padding-top: 5px;
+				line-height: 24px;
+			}
+			
+			.copy a {
+				color: #a3a9b5;
+			}
+			
+			.copy .iconlinks {
+				display: inline-block;
+				width: 19px;
+				height: 19px;
+				background-repeat: no-repeat;
+				margin-bottom: -4px;
+				margin-left: 3px;
+			}
+			
+			.iconlinks1 {
+				background: url(img/img1_07ee3bc.png) no-repeat;
+			}
+			
+			.iconlinks2 {
+				background: url(img/img2_000e014.png);
+			}
+			
+			.iconlinks3 {
+				background: url(img/img3_32c9dc6.png);
+			}
+			
+			#gotop {
+				position: fixed;
+				width: 54px;
+				left: 50%;
+				margin-left: 502px;
+				bottom: 20px;
+				z-index: 998;
+			}
+			
+			#gotop li {
+				cursor: pointer;
+				height: 50px;
+				background: url(img/icon-merged_665a315.png) no-repeat;
+			}
+			
+			#login {
+				position: absolute;
+				left: 35%;
+				top: 30%;
+				width: 393px;
+				background: #fff;
+				font-family: 宋体;
+				background-color: #f7f7f7;
+				display: none;
+				z-index: 998;
+			}
+			
+			.loginTitle {
+				position: relative;
+				height: 18px;
+				font-size: 16px;
+				font-weight: 700;
+				padding: 15px 20px 13px;
+				text-indent: 50px;
+				border: 1px solid #D8D8D8;
+				background: url(img/logo-recommend_28d78fb.jpg) no-repeat 25px 10px;
+			}
+			
+			.loginTitle .titleTxt {
+				position: absolute;
+				left: 0px;
+				top: 14px;
+			}
+			
+			.loginTitle .loginClose {
+				position: absolute;
+				cursor: pointer;
+				right: 20px;
+				top: 14px;
+				width: 16px;
+				height: 16px;
+				background: url(img/btn-close_056d682.png) no-repeat 3px 3px;
+			}
+			
+			.loginBody {
+				border: 1px solid #D8D8D8;
+				border-top: none;
+				background-color: #fff;
+				padding: 0 20px;
+			}
+			
+			.loginBody .tel {
+				font-size: 12px;
+				padding: 20px 0 10px;
+				text-align: right;
+			}
+			
+			.loginBody .tel a {
+				padding-left: 15px;
+				color: #333;
+				text-decoration: none;
+				font-family: arial
+			}
+			
+			.loginBody .name {
+				width: 300px;
+			}
+			
+			.loginBody .userName,
+			.loginBody .password {
+				width: 300px;
+				height: 16px;
+				padding: 12px 10px;
+				padding-left: 38px;
+			}
+			
+			.loginBody .userName {
+				margin-bottom: 15px;
+			}
+			
+			.loginBody .member {
+				padding: 15px 0;
+				color: #666;
+				font-size: 12px;
+				margin-left: 5px;
+			}
+			
+			.loginBody .member a {
+				float: right;
+				text-decoration: none;
+				color: #1b66c7;
+				font-family: arial
+			}
+			
+			.loginBody .member input {
+				vertical-align: middle;
+			}
+			
+			.loginBody .submit {
+				position: relative;
+				text-align: center;
+				height: 48px;
+				line-height: 48px;
+			}
+			
+			.loginBody .submit .loginBtn {
+				display: inline-block;
+				width: 100%;
+				height: 48px;
+				background-color: #3f89ec;
+				text-decoration: none;
+				color: #fff;
+				font-size: 16px;
+				border-radius: 3px;
+			}
+			
+			.loginBody .reg {
+				margin-top: 15px;
+				padding-bottom: 45px;
+			}
+			
+			.loginBody .reg a {
+				float: right;
+				font-size: 12px;
+				color: #1b66c7;
+				font-family: arial;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header clearfix">
+
+			<div class="topBar">
+				<div class="userBar">
+					<ul>
+						<li>
+							<a href="#">百度首页</a>
+						</li>
+						<li>
+							<a id="denglv" href="#">登录</a>
+						</li>
+						<li>
+							<a href="#">注册</a>
+						</li>
+						<li>
+							<a href="#">百度新闻客户端</a>
+						</li>
+					</ul>
+				</div>
+				<span class="line"></span>
+				<div class="headLink">
+					<ul>
+						<li>
+							<a href="#">网页</a>
+						</li>
+						<li>
+							<a href="#" style="text-decoration: none;color: #666;">新闻</a>
+						</li>
+						<li>
+							<a href="#">贴吧</a>
+						</li>
+						<li>
+							<a href="#">知道</a>
+						</li>
+						<li>
+							<a href="#">音乐</a>
+						</li>
+						<li>
+							<a href="#">图片</a>
+						</li>
+						<li>
+							<a href="#">视频</a>
+						</li>
+						<li>
+							<a href="#">地图</a>
+						</li>
+						<li>
+							<a href="#">文库</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="head w">
+				<div class="logo">
+					<a href="#"><img src="img/logo_news_276_88_1f9876a.png" width="135" height="45" /></a>
+				</div>
+				<div class="search">
+					<span class="ipt">
+					<input class="word" type="text" />
+					<input type="radio" checked="checked" name="sel" id="news"/><label for="news">新闻全文</label>
+					<input type="radio" name="sel" /><label for="newtitle">新闻标题</label>
+					</span>
+					<input type="button" class="btn" value="百度一下">
+					<div class="help">
+						<a href="#">帮助</a>
+						<a href="#">高级搜索</a>
+						<a href="#">设置</a>
+					</div>
+				</div>
+			</div>
+
+			<script>
+				var word = document.getElementsByClassName('word')[0];
+				word.onfocus = function() {
+					word.style.borderColor = "#38f";
+				}
+				word.onblur = function() {
+					word.style.borderColor = "";
+				}
+			</script>
+			<script>
+				window.onscroll = function() {
+					var topScroll = document.body.scrollTop; //滚动的距离,距离顶部的距离
+					var menu = document.getElementsByClassName("menu")[0]; //获取到导航栏id
+					var nav = document.getElementsByClassName('nav')[0];
+					if(topScroll > 136) { //当滚动距离大于136px时执行下面的东西
+						menu.style.position = 'fixed';
+						menu.style.top = '0';
+						menu.style.zIndex = '9999';
+						nav.stu
+					} else { //当滚动距离小于136的时候执行下面的内容，也就是让导航栏恢复原状
+						menu.style.position = 'static';
+					}
+				}
+			</script>
+			<div class="menu">
+				<div class="w">
+					<div class="nav">
+						<ul>
+							<li class="current  index">
+								<a href="#">首页</a>
+							</li>
+							<li>
+								<a href="#">百家号</a>
+							</li>
+							<li>
+								<a href="#">国内</a>
+							</li>
+							<li>
+								<a href="#">国际</a>
+							</li>
+							<li>
+								<a href="#">军事</a>
+							</li>
+							<li>
+								<a href="#">社会</a>
+							</li>
+							<li>
+								<a href="#">财经</a>
+							</li>
+							<li>
+								<a href="#">娱乐</a>
+							</li>
+							<li>
+								<a href="#">体育</a>
+							</li>
+							<li>
+								<a href="#">互联网</a>
+							</li>
+							<li>
+								<a href="#">科技</a>
+							</li>
+							<li>
+								<a href="#">游戏</a>
+							</li>
+							<li>
+								<a href="#">时尚</a>
+							</li>
+							<li>
+								<a href="#">女人</a>
+							</li>
+							<li>
+								<a href="#">汽车</a>
+							</li>
+							<li>
+								<a href="#">房产</a>
+							</li>
+							<li>
+								<a href="#">个性推荐</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="column w clearfix">
+			<div class="column-l">
+				<div class="head-tabs clearfix">
+					<ul>
+						<li class="active li1">
+							<a class="first" href="javascript:;" id="tab1">热点要闻</a>
+						</li>
+						<li class="li2">
+							<a href="javascript:;" id="tab2">个性推荐</a>
+						</li>
+						<a class="tabs-login" href="javascript:;"></a>
+					</ul>
+				</div>
+				<script>
+					window.onload = function() {
+						var li1 = document.getElementsByClassName('li1')[0];
+						var li2 = document.getElementsByClassName('li2')[0];
+						var tab1 = document.getElementById('tab1');
+						var tab2 = document.getElementById('tab2');
+						var one = document.getElementById('one');
+						var two = document.getElementById('two');
+						tab1.onclick = function() {
+							one.style.display = 'block';
+							two.style.display = 'none';
+							li1.className = 'active';
+							li2.className = '';
+						}
+						tab2.onclick = function() {
+							one.style.display = 'none';
+							two.style.display = 'block';
+							li2.className = 'active';
+							li1.className = '';
+						}
+					}
+				</script>
+				<div id="one">
+					<div class="hotnews">
+						<ul>
+							<li><i class="dot"></i><strong><a href="#">习近平出席全运会并宣布运动会开幕</a></strong></li>
+							<li><i class="dot"></i>
+								<a href="#">习近平会见国际奥委会主席巴赫 </a>&nbsp;
+								<a href="#"> 体育强国梦</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">习近平关于社会主义政治建设论述摘编出版发行 </a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">李克强:推进制造业提质升级 促经济迈向中高端 </a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">天津全运会开幕 孙杨任旗手津娃点燃圣火 </a>&nbsp;
+								<a href="#"> 专题</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">泰国前总理英拉不知去向 军方否认放其离境 </a>
+							</li>
+						</ul>
+					</div>
+					<div class="ullist">
+						<ul>
+							<li><i class="dot first"></i><strong><a href="#">“涉外”月嫂需求量增大 月嫂捧起英语书开始练口语</a></strong></li>
+							<li><i class="dot"></i>
+								<a href="#">武汉首放开无门槛落户 凭大学毕业证可落户</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">国歌法草案二审：歪曲贬损国歌或将被追究刑事责任</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">朝鲜公司发布3D射击游戏 美国士兵成“猎杀”对象</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">中国将建红色旅游公路！总长2442公里涉28省区市</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">国资委：国电集团与神华集团实施联合重组</a>
+							</li>
+						</ul>
+					</div>
+					<div class="ullist">
+						<ul>
+							<li><i class="dot first"></i><strong><a href="#">海底捞"出事了"，你会选择原谅它吗？</a></strong></li>
+							<li><i class="dot"></i>
+								<a href="#">重庆警方捣毁特大婚恋诈骗团伙 抓获142名犯罪嫌疑人</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">北京今日上午共办理结婚登记1600多对</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">深圳市原政法委书记蒋尊玉被判无期 受贿财物没收</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">美团涉不正当竞争被浙江金华市场监管局罚52.6万</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">台湾女子游美遭莫名殴打 报案后因亚裔身份遭歧视</a>
+							</li>
+						</ul>
+					</div>
+					<div class="ullist">
+						<ul>
+							<li><i class="dot first"></i><strong><a href="#">中国女生留学欧洲被问：你们国家都是坐牛车么？</a></strong></li>
+							<li><i class="dot"></i>
+								<a href="#">日本前首相羽田孜逝世 曾认为自己是中国移民后裔</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">90后妻子发布“七夕出租自己”信息 遭老公家暴</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">调查称近47%单身职场人不急结婚 你急吗？七夕咋过？</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">陪读租房三年花12万值吗？名校周边想租要提前俩月！</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">四川宝兴暴雨引发山洪紧急转移400余人 2名人员死亡</a>
+							</li>
+						</ul>
+					</div>
+					<div class="ullist">
+						<ul>
+							<li><i class="dot first"></i><strong><a href="#">法德联手向谷歌等互联网巨头征税:不能只享受利润</a></strong></li>
+							<li><i class="dot"></i>
+								<a href="#">美国之后是日本？日直升机坠海 1人获救3人失踪</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">印度“大师”今日量刑宣判 两邦断网防再次骚乱</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">外交部：印度士兵和设备撤出中国领土</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">腾格里沙漠污染案结案：8企业承担5.69亿修复污染</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">170多名新生持通知书却被拒收 校方：学生严重超额</a>
+							</li>
+						</ul>
+					</div>
+					<div class="ullist">
+						<ul>
+							<li><i class="dot first"></i><strong><a href="#">长沙现医疗机器人 "大白"医生4.8秒可断100份病例</a></strong></li>
+							<li><i class="dot"></i>
+								<a href="#">山西晋煤集团王台铺矿事故致4死 矿长等3人被撤职</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">山东交警逮到“违章王”：673条记录累计罚金8.7万</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">蒋尊玉女儿曾收商人保时捷跑车 父女二人同期受审</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">贵州纳雍县发生山体滑坡2人死亡25人失联</a>
+							</li>
+							<li><i class="dot"></i>
+								<a href="#">13岁少年高分考入清华 曾获物理竞赛银牌小提琴十级</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="two">
+					<div class="feed">
+						<div class="feed-item">
+							<div class="feed-img">
+								<a href="#"><img src="img/two1.jpg" /></a>
+							</div>
+							<div class="feed-para">
+								<a href="#">赛维电商2017年半年报：营收突破84932万元，净利润上涨7.97%</a>
+							</div>
+						</div>
+						<div class="feed-item">
+							<div class="feed-img">
+								<a href="#"><img src="img/two2.jpg" /></a>
+							</div>
+							<div class="feed-para">
+								<a href="#">8月18日，「借把伞」CEO卢屹被中国之声采访，畅谈了主持人最关心的，当然也可能是用户最关心的问题。</a>
+							</div>
+						</div>
+						<div class="feed-item">
+							<div class="feed-img">
+								<a href="#"><img src="img/two3.jpg" /></a>
+							</div>
+							<div class="feed-para">
+								<a href="#">酒店客人洗澡“被直播”软件日志指证偷窥者</a>
+							</div>
+						</div>
+						<div class="feed-item">
+							<h3><a href="#">我国首次截获科氏网纹盾蚧</a></h3>
+							<p class="feed-item-txt">目前检验检疫人员已对该批截获水果及送检样品进行了无害化处理。</p>
+						</div>
+						<div class="feed-item">
+							<div class="feed-img">
+								<a href="#"><img src="img/two4.jpg" /></a>
+							</div>
+							<div class="feed-para">
+								<a href="#">马云摆地摊，马化腾遭合伙人欺骗，大佬创业初期有哪些辛酸史？</a>
+							</div>
+						</div>
+						<div class="feed-item">
+							<div class="feed-img">
+								<a href="#"><img src="img/two5.jpg" /></a>
+							</div>
+							<div class="feed-para">
+								<a href="#">离岸人民币兑美元一度升破6.59，最高报6.5894。</a>
+							</div>
+						</div>
+						<div class="feed-item">
+							<h3><a href="#">中国TMT企业IPO数量维持高位  A股TMT公司平均市盈率降至54倍</a></h3>
+						</div>
+						<div class="feed-item">
+							<div class="feed-img">
+								<a href="#"><img src="img/two6.jpg" /></a>
+							</div>
+							<div class="feed-para">
+								<a href="#">湖南一黑作坊制造假减肥药 销售利润近9000%</a>
+							</div>
+						</div>
+						<div class="feed-item">
+							<div class="feed-img">
+								<a href="#"><img src="img/two7.jpg" /></a>
+							</div>
+							<div class="feed-para">
+								<a href="#">广东阳江14岁女生带3万　跟陌生男子私奔</a>
+							</div>
+						</div>
+						<div class="feed-item">
+							<div class="feed-img">
+								<a href="#"><img src="img/two1.jpg" /></a>
+							</div>
+							<div class="feed-para">
+								<a href="#">赛维电商2017年半年报：营收突破84932万元，净利润上涨7.97%</a>
+							</div>
+						</div>
+						<div class="feed-item">
+							<div class="feed-img">
+								<a href="#"><img src="img/two2.jpg" /></a>
+							</div>
+							<div class="feed-para">
+								<a href="#">8月18日，「借把伞」CEO卢屹被中国之声采访，畅谈了主持人最关心的，当然也可能是用户最关心的问题。</a>
+							</div>
+						</div>
+						<div class="feed-item">
+							<div class="feed-img">
+								<a href="#"><img src="img/two1.jpg" /></a>
+							</div>
+							<div class="feed-para">
+								<a href="#">赛维电商2017年半年报：营收突破84932万元，净利润上涨7.97%</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="column-r">
+				<div class="imgplayer clearfix">
+					<div class="imgplayer-control">
+						<a class="prev" href="javascript:;"></a>
+						<a class="next" href="javascript:;"></a>
+					</div>
+					<div class="imgview">
+						<a href="#"><img class="imgpic" src="img/p0.jpg" /></a>
+						<a href="#"><img class="imgpic" src="img/p2.jpg" /></a>
+						<a href="#"><img class="imgpic" src="img/p3.jpg" /></a>
+						<a href="#"><img class="imgpic" src="img/p4.jpg" /></a>
+						<a href="#"><img class="imgpic" src="img/p5.jpg" /></a>
+						<a href="#"><img class="imgpic" src="img/p5.jpg" /></a>
+					</div>
+					<div class="imgmask"></div>
+					<div class="imgtxt">
+						<a href="javascript:;"><strong>五图话“金砖”——“金砖”新地标</strong></a>
+						<a href="javascript:;"><strong>世界最高桥！湖南永吉高速猛洞河特大桥主体完工</strong></a>
+						<a href="javascript:;"><strong>女孩辗转2千余公里追到边关嫁给兵哥哥</strong></a>
+						<a href="javascript:;"><strong>为制作毛皮大衣 它们被养成了怪物</strong></a>
+						<a href="javascript:;"><strong>中国“吉普赛人” 的海上夜生活   一晚捕鱼三万斤</strong></a>
+						<a href="javascript:;"><strong>广西一大学生骑行22天4300公里到黑龙江报到 </strong></a>
+					</div>
+					<div class="imgnav" id="mynav">
+						<span class="current"></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+				<script>
+					var circle = document.getElementById("mynav").getElementsByTagName('span');
+					var imgview = document.getElementsByClassName('imgpic');
+					var prev = document.getElementsByClassName('prev')[0];
+					var next = document.getElementsByClassName('next')[0];
+					var container = document.getElementsByClassName('imgplayer')[0];
+					var imgtit = document.getElementsByClassName('imgtxt')[0].getElementsByTagName('a');
+					var timer;
+					for(var i = 0; i < imgview.length; i++) {
+						circle[i].index = i;
+						circle[i].onmouseover = function() {
+							for(var j = 0; j < imgview.length; j++) {
+								imgview[j].src = 'img/p' + (this.index) + '.jpg';
+								circle[j].className = '';
+								imgtit[j].style.display = 'none'
+							}
+							circle[this.index].className = 'current';
+							imgtit[this.index].style.display = 'block'
+						}
+					}
+					var index = 0;
+
+					function circleShow() {
+						//将之前的小圆点的样式清除
+						for(var i = 0; i < circle.length; i++) {
+							for(var j = 0; j < imgview.length; j++) {
+								imgview[j].src = 'img/p' + this.index + '.jpg';
+								imgtit[j].style.display = 'none'
+							}
+							if(circle[i].className == "current") {
+								circle[i].className = "";
+							}
+						}
+						//数组从0开始，故index需要-1
+						circle[index].className = "current";
+						imgtit[index].style.display = 'block'
+					}
+
+					function play() {
+						//重复执行的定时器
+						timer = setInterval(function() {
+							next.onclick();
+						}, 3000)
+					}
+
+					function stop() {
+						clearInterval(timer);
+					}
+					prev.onclick = function() {
+						index -= 1;
+						if(index < 0) {
+							index = 5
+						}
+						circleShow();
+					};
+					next.onclick = function() {
+						index += 1;
+						if(index > 5) {
+							index = 0
+						}
+						circleShow();
+					};
+					container.onmouseover = stop;
+					container.onmouseout = play;
+					play();
+				</script>
+				<div class="hotword">
+					<div class="hd">
+						<h3>
+							<a href="#">热搜新闻词</a>
+							<span class="en">HOT WORDS</span>
+						</h3>
+					</div>
+					<div class="bd">
+						<ul>
+							<li class="long">
+								<a href="#">习近平出席第十三届<br />全运会开幕式</a>
+							</li>
+							<li class="long current">
+								<a href="#">习近平会见巴赫<br />艾哈迈德亲王</a>
+							</li>
+							<li>
+								<a href="#">中国将建红色<br />旅游公路</a>
+							</li>
+							<li>
+								<a href="#">美国牛肉在中国市场遇挫</a>
+							</li>
+							<li class="current">
+								<a href="#">麦当劳回应抗生素鸡含糊其辞</a>
+							</li>
+							<li>
+								<a href="#">高校明年不再学历继续教育</a>
+							</li>
+							<li class="current">
+								<a href="#">福彩中心<br />原主任落马</a>
+							</li>
+							<li>
+								<a href="#">海警船在钓鱼岛毗邻海域巡航</a>
+							</li>
+							<li>
+								<a href="#">国歌法草案<br />二次审议</a>
+							</li>
+							<li class="current">
+								<a href="#">北京单身地图<br />出炉</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="baijia">
+					<div class="border">
+						<div class="hd pb10">
+							<h2>
+							<a href="#">百家号</a>
+							<span class="en">BAIJIA</span>
+						</h2>
+							<div class="sub fl">
+								<a href="#">财经</a>
+								<a href="#">文化</a>
+								<a href="#">娱乐</a>
+								<a href="#" style="border: none;">体育</a>
+							</div>
+							<span class="more fr"><a href="#">加入百家号</a></span>
+						</div>
+					</div>
+					<div class="baijia-l-up">
+						<div class="imgarea">
+							<div class="imgTop">
+								<a href="#"><img src="img/bd3eb13533fa828b3e8ca620f71f4134960a5a41.jpg" /></a>
+								<a class="title" href="#">高通不是救星，魅族的2017依然不乐观</a>
+							</div>
+							<div class="imgBottom">
+								<div class="imglist">
+									<a href="#"><img src="img/77094b36acaf2edd37b2a521871001e9380193b3.jpg" /></a>
+									<a class="txt" href="#">北京新人“七夕”扎堆领证</a>
+								</div>
+								<div class="imglist" style="padding: 0;">
+									<a href="#"><img src="img/77094b36acaf2edd37b2a521871001e9380193b3.jpg" /></a>
+									<a class="txt" href="#">北京新人“七夕”扎堆领证</a>
+								</div>
+							</div>
+						</div>
+						<div class="hd pt10 pb10">
+							<h2>
+							<a href="#">百家聚焦</a>
+							<span class="en">BAIJIA FOCUS</span>
+						</h2>
+
+						</div>
+						<div class="imgTop">
+							<a href="#"><img src="img/342ac65c10385343f60ff9e99913b07ecb808831.jpg" /></a>
+							<a class="title" href="#">高通不是救星，魅族的2017依然不乐观</a>
+						</div>
+					</div>
+					<div class="baijia-r-up">
+						<div class="focusList fl">
+							<div class="ullist fl">
+								<ul>
+									<li><strong><a href="#">我们研究了两百多家公司的融资条款，告诉你如何防止被“套路” </a></strong></li>
+									<li>
+										<a href="#">艺术衍生品电商为何始终难成气候？</a>
+									</li>
+									<li>
+										<a href="#">99%数字货币是世纪骗局，与E租宝、五行币如出一辙</a>
+									</li>
+									<li>
+										<a href="#">网易云音乐陷版权纠纷：难逃利用网络盗版音乐笼络用户之嫌？</a>
+									</li>
+									<li>
+										<a href="#">为什么今年七夕在微信朋友圈秀恩爱的人变少了？</a>
+									</li>
+								</ul>
+							</div>
+							<div class="ullist fl" style="border: none;margin-top: 20px;">
+								<ul>
+									<li><strong><a href="#">美团摊上事了，因涉嫌不正当竞争被罚52万</a></strong></li>
+									<li>
+										<a href="#">继短视频后，网络自制综艺成在线视频新战场</a>
+									</li>
+									<li>
+										<a href="#">土豪金的共享单车也倒闭了！网友：押金取不出</a>
+									</li>
+									<li>
+										<a href="#">被贾跃亭抽血62亿，乐视网现金枯竭生死一线 -乐视网半年报分</a>
+									</li>
+									<li>
+										<a href="#">12年一轮回，分类信息的价值回归</a>
+									</li>
+								</ul>
+							</div>
+							<div class="ullist fl" style="border: none;">
+								<div class="hd pt10 pb10">
+									<h2>
+										<a href="#">热门文章</a>
+										<span class="en">BAIJIA HOT</span>
+									</h2>
+
+								</div>
+								<ul class="hot">
+									<li><span class="listnum"></span>
+										<a href="#">土豪金的共享单车也倒闭了！网</a>
+										<a href="#">唆麻</a>
+									</li>
+									<li>
+										<span class="listnum"></span>
+										<a href="#">继短视频后，网络自制综艺成在线视频新战场</a>
+									</li>
+									<li>
+										<span class="listnum"></span>
+										<a href="#">土豪金的共享单车也倒闭了！网友：押金取不出</a>
+									</li>
+									<li>
+										<span class="listnum"></span>
+										<a href="#">被贾跃亭抽血62亿，乐视网现金枯竭生死一线 -乐视网半年报分</a>
+									</li>
+									<li>
+										<span class="listnum"></span>
+										<a href="#">12年一轮回，分类信息的价值回归</a>
+									</li>
+								</ul>
+								<script>
+									var spans = document.getElementsByClassName('listnum');
+									for(var i = 0; i < spans.length; i++) {
+										spans[i].style.backgroundPosition = 0 + 'px ' + -i * 18 + 'px';
+									}
+								</script>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="column w clearfix">
+			<div class="china">
+				<div class="hd">
+					<h3>
+							<a href="#">广州新闻</a>
+							<span class="en">LOCAL NEWS</span>
+						</h3>
+					<a href="javascript:;"><span class="city">切换城市</span></a>
+					<div id="city_view" class="city_view" style=" left: 196px; top: 30px;">
+						<div class="city_list">
+							<a href="javascript:;">北京</a>
+							<a href="javascript:;">上海</a>
+							<a href="javascript:;">天津</a>
+							<a href="javascript:;">重庆</a>
+							<a href="javascript:;">安徽</a>
+							<a href="javascript:;">福建</a>
+							<a href="javascript:;">甘肃</a>
+							<a href="javascript:;">广东</a>
+							<a href="javascript:;">广西</a>
+							<a href="javascript:;">贵州</a>
+							<a href="javascript:;">海南</a>
+							<a href="javascript:;">河北</a>
+							<a href="javascript:;">河南</a>
+							<a href="javascript:;">湖北</a>
+							<a href="javascript:;">湖南</a>
+							<a href="javascript:;">吉林</a>
+							<a href="javascript:;">江苏</a>
+							<a href="javascript:;">江西</a>
+							<a href="javascript:;">辽宁</a>
+							<a href="javascript:;">宁夏</a>
+							<a href="javascript:;">青海</a>
+							<a href="javascript:;">山东</a>
+							<a href="javascript:;">山西</a>
+							<a href="javascript:;">陕西</a>
+							<a href="javascript:;">四川</a>
+							<a href="javascript:;">西藏</a>
+							<a href="javascript:;">新疆</a>
+							<a href="javascript:;">云南</a>
+							<a href="javascript:;">浙江</a>
+							<a href="javascript:;">黑龙江</a>
+							<a href="javascript:;">内蒙古</a>
+							<a href="javascript:;">钓鱼岛</a>
+						</div>
+						<div id="btn_back " class="btn_back " style="visibility: hidden; ">返回</div>
+						<div id="btn_close " class="btn_close "></div>
+						<p class="city-tip ">您所选城市新闻不足，将展示省会新闻</p>
+						<div class="up_triangle "></div>
+					</div>
+					<span class="more fl "><a href="# ">更多 </a></span>
+				</div>
+			</div>
+			<script>
+				var city = document.getElementsByClassName('city')[0];
+				var close = document.getElementById("btn_close ");
+				var view = document.getElementById('city_view');
+
+				city.onclick = function() {
+					if(view.style.visibility == 'visible') {
+						view.style.visibility = 'hidden';
+					} else {
+						view.style.visibility = 'visible';
+					}
+				}
+				close.onclick = function() {
+					view.style.visibility = 'hidden';
+				}
+			</script>
+			<div class="column-l ">
+				<div class="ullist ">
+					<ul>
+						<li><i class="dot first "></i><strong><a href="# ">广州启动“善知学园计划” 打造公益慈善人才学习...</a></strong></li>
+						<li><i class="dot "></i>
+							<a href="# ">广州海珠警方快速侦破一起命案</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">四天两遇台风 广州启动二级应急响应</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">“962老友记·第四届金秋歌唱大赛”决赛广州举行</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">广州今年查处违建2万余宗 近800万平方米</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">“共享别墅”悄现广州 盘活闲置别墅资源</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">广州上月查处逾千例出租车违章</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">七夕非遗产文化体验展在广州天河举行</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="column-r ">
+				<div class="baijia-l-up ">
+
+					<div class="mainTitle ">
+						<h3>新闻图片</h3></div>
+					<div class="imgTop ">
+						<a href="# "><img src="img/359b033b5bb5c9ea10347e2bdf39b6003bf3b336.jpg " /></a>
+						<a class="title " href="# ">高通不是救星，魅族的2017依然不乐观</a>
+					</div>
+				</div>
+				<div class="focusList ">
+					<div class="mainTitle ">
+						<h3>新闻资讯</h3></div>
+
+					<div class="ullist fl " style="border: none;margin-top: 20px; ">
+						<ul>
+							<li>
+								<a href="# ">2017中国机器人产业创新峰会广州举行 聚焦创...</a>
+							</li>
+							<li>
+								<a href="# ">广州一超市试水自助埋单 半年130万单无一逃单</a>
+							</li>
+							<li>
+								<a href="# ">广州旧楼加装电梯业主意见多多 建了四个月未完工</a>
+							</li>
+							<li>
+								<a href="# ">2017广东时装周秋季闭幕</a>
+							</li>
+							<li>
+								<a href="# ">黄埔港在广东率先实现从申报到放行全程无纸化</a>
+							</li>
+							<li>
+								<a href="# ">经济好用帅铃快递车 全能商贸版广州实拍</a>
+							</li>
+							<li>
+								<a href="# ">广州定向全能王 挑战天河体育中心</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="column w clearfix ">
+			<div class="china ">
+				<div class="hd ">
+					<h3>
+							<a href="# ">国内</a>
+							<span class="en ">CHINA</span>
+						</h3>
+					<div class="sub fl ">
+						<a href="# ">时政要闻</a>
+						<a href="# ">台湾</a>
+						<a href="# " style="border: none; ">港澳</a>
+					</div>
+					<span class="more fl "><a href="# ">更多 </a></span>
+				</div>
+			</div>
+			<div class="column-l ">
+				<div class="ullist ">
+					<ul>
+						<li><i class="dot first "></i><strong><a href="# ">2017年重点高校“寒门贵子”人数增长9.3%</a></strong></li>
+						<li><i class="dot "></i>
+							<a href="# ">贵州纳雍滑坡：学校报到日 许多孩子躲过一劫</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">专家:中国载人潜水器有望五年内抵11公里深海底</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">汤显祖墓被毁坏51年后重现 共有明清墓葬42座</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">北京市食药监督管理局：1批次进口饼干不合格</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">4贪官自导自演骗保2000万 炮制受灾照片虚假理赔</a>
+						</li>
+					</ul>
+				</div>
+				<div class="ullist ">
+					<ul>
+						<li><i class="dot first "></i><strong><a href="# ">国家统编教材将启用 小学语文先认字再学拼音</a></strong></li>
+						<li><i class="dot "></i>
+							<a href="# ">村主任受贿超千万:房地产是我能捞大钱的地方</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">广东追回外逃人员93人 其中国家工作人员36人</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">七夕北京街头"共享男友 " 在前男友前炫耀77元/次</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">妈妈教唆15岁女儿顺走商店手机 儿子在一旁目睹</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">喜讯！威海市8家单位和5名个人获全国先进称号</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="column-r ">
+				<div class="baijia-l-up ">
+
+					<div class="mainTitle ">
+						<h3>国内图片</h3></div>
+					<div class="baijia ">
+						<div class="imgarea ">
+							<div class="imgTop ">
+								<a href="# "><img src="img/1ad5ad6eddc451da7490e023bcfd5266d1163290.jpg "></a>
+								<a class="title " href="# ">90后独臂独腿小伙骑行穿越青藏线</a>
+							</div>
+							<div class="imgBottom ">
+								<div class="imglist ">
+									<a href="# "><img src="img/21a4462309f7905272523bf606f3d7ca7acbd5ad.jpg "></a>
+									<a class="txt " href="# ">游客漂流时未配合工作人员拍照遭殴打</a>
+								</div>
+								<div class="imglist " style="padding: 0; ">
+									<a href="# "><img src="img/4ec2d5628535e5dddd2cd4177cc6a7efcf1b62f1.jpg "></a>
+									<a class="txt " href="# ">武警水电部队火速驰援贵州</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="focusList ">
+					<div class="mainTitle ">
+						<h3>国内资讯</h3>
+					</div>
+
+					<div class="imgBottom ">
+						<div class="imglist ">
+							<a href="# "><img src="img/3801213fb80e7becf682e529252eb9389a506b9a.jpg " /></a>
+							<a class="txt " href="# ">武警特战队员上演现实版“战狼”</a>
+						</div>
+						<div class="imglist " style="padding: 0; ">
+							<a href="# "><img src="img/29381f30e924b899e9d79ef064061d950b7bf60b.jpg " /></a>
+							<a class="txt " href="# ">成都郫都城管副队长“借钱” 餐馆老板向纪委举报</a>
+						</div>
+					</div>
+					<div class="ullist fl " style="border: none;padding-top: 16px; ">
+						<div class="mainTitle ">
+							<h3>热门点击</h3>
+						</div>
+						<ul class="hot " id="num1 ">
+							<li><span class="listnum " style="background-position: 0px 0px; "></span>
+								<a href="# ">新疆克孜勒苏州发生3.7级地震 震源深度10</a>
+							</li>
+							<li>
+								<span class="listnum " style="background-position: 0px -18px; "></span>
+								<a href="# ">没时间吃饭 吃饼干 出访时的习近平忙到日</a>
+							</li>
+							<li>
+								<span class="listnum " style="background-position: 0px -36px; "></span>
+								<a href="# ">江西抚州发现汤显祖家族墓园 汤显祖墓确</a>
+							</li>
+							<li>
+								<span class="listnum " style="background-position: 0px -54px; "></span>
+								<a href="# ">村主任受贿超千万：房地产是我能捞大钱的</a>
+							</li>
+							<li>
+								<span class="listnum " style="background-position: 0px -72px; "></span>
+								<a href="# ">海底捞海口店原料溯源存在问题 曾检出红</a>
+							</li>
+						</ul>
+						<script>
+							var spans1 = document.getElementById("num1 ").getElementsByClassName('listnum');
+							for(var i = 0; i < spans1.length; i++) {
+								spans1[i].style.backgroundPosition = 0 + 'px ' + -i * 18 + 'px';
+							}
+						</script>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="column w clearfix ">
+			<div class="china ">
+				<div class="hd ">
+					<h3>
+							<a href="# ">国际</a>
+							<span class="en ">WORLD</span>
+						</h3>
+					<div class="sub fl ">
+						<a href="# ">环球视野</a>
+						<a href="# " style="border: none; ">国际人物</a>
+					</div>
+					<span class="more fl "><a href="# ">更多 </a></span>
+				</div>
+			</div>
+			<div class="column-l ">
+				<div class="ullist ">
+					<ul>
+						<li><i class="dot first "></i><strong><a href="# ">今晨朝鲜射导飞过日本上空 特朗普安倍通话</a></strong></li>
+						<li><i class="dot "></i>
+							<a href="# ">印度两周内第三起火车脱轨，已造成多人受伤</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">为免遭绑架强奸 印度女性开始积极讨教中国功夫</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">韩媒：韩国空军4架F15战机进行投弹演习</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">为选美7岁小女孩变身夜店女郎?当妈的想赢想疯了</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">第三轮“脱欧”谈判开启 英欧双方继续讨价还价</a>
+						</li>
+					</ul>
+				</div>
+				<div class="ullist ">
+					<ul>
+						<li><i class="dot first "></i><strong><a href="# ">印度“大师”被判20年 当庭大哭请求宽大处理</a></strong></li>
+						<li><i class="dot "></i>
+							<a href="# ">一名男子在美国新墨西哥州图书馆内开枪 多人死亡</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">女子失踪被传加入邪教组织 实则被兽父亲囚禁24年</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">朝鲜今早发射的导弹是这样飞过日本的</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">巴基斯坦反美游行 为抗议西方亵渎先知穆罕默德</a>
+						</li>
+						<li><i class="dot "></i>
+							<a href="# ">外媒：消费疲软、投资停滞 英国现“脱欧”副作用</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="column-r ">
+				<div class="baijia-l-up ">
+
+					<div class="mainTitle ">
+						<h3>国际图片</h3></div>
+					<div class="baijia ">
+						<div class="imgarea ">
+							<div class="imgTop ">
+								<a href="# "><img src="img/5d6034a85edf8db10adc9aac0323dd54574e740c.jpg "></a>
+								<a class="title " href="# ">数百名IS武装分子坐大巴撤离</a>
+							</div>
+							<div class="imgBottom ">
+								<div class="imglist ">
+									<a href="# "><img src="img/5fdf8db1cb13495459bb9bac5c4e9258d0094a54.jpg "></a>
+									<a class="txt " href="# ">美国一图书馆发生枪击案 至少2死4伤</a>
+								</div>
+								<div class="imglist " style="padding: 0; ">
+									<a href="# "><img src="img/7acb0a46f21fbe099f3ab1dc61600c338644ad96.jpg "></a>
+									<a class="txt " href="# ">泰国法师脚踩头治疗称客人自愿</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="focusList ">
+					<div class="mainTitle ">
+						<h3>环球视野</h3>
+					</div>
+
+					<div class="imgBottom ">
+						<div class="imglist ">
+							<a href="# "><img src="img/3801213fb80e7becf682e529252eb9389a506b9a.jpg " /></a>
+							<a class="txt " href="# ">武警特战队员上演现实版“战狼”</a>
+						</div>
+						<div class="imglist " style="padding: 0; ">
+							<a href="# "><img src="img/29381f30e924b899e9d79ef064061d950b7bf60b.jpg " /></a>
+							<a class="txt " href="# ">成都郫都城管副队长“借钱” 餐馆老板向纪委举报</a>
+						</div>
+					</div>
+					<div class="mainTitle " style="padding-top: 16px; ">
+						<h3>国际热搜词</h3>
+					</div>
+					<div class="wordlist " id="num2 ">
+						<div class="ullist fl " style="border: none; width: 145px; ">
+
+							<ul class="hot ">
+								<li><span class="listnum "></span>
+									<a href="# ">土豪金的共享单车也倒闭了！网</a>
+								</li>
+								<li>
+									<span class="listnum "></span>
+									<a href="# ">继短视频后，网络自制综艺成在线视频新战场</a>
+								</li>
+								<li>
+									<span class="listnum "></span>
+									<a href="# ">土豪金的共享单车也倒闭了！网友：押金取不出</a>
+								</li>
+								<li>
+									<span class="listnum "></span>
+									<a href="# ">被贾跃亭抽血62亿，乐视网现金枯竭生死一线 -乐视网半年报分</a>
+								</li>
+								<li>
+									<span class="listnum "></span>
+									<a href="# ">12年一轮回，分类信息的价值回归</a>
+								</li>
+							</ul>
+						</div>
+						<div class="ullist fr " style="border: none;width: 145px; ">
+
+							<ul class="hot ">
+								<li><span class="listnum "></span>
+									<a href="# ">土豪金的共享单车也倒闭了！网</a>
+								</li>
+								<li>
+									<span class="listnum "></span>
+									<a href="# ">继短视频后，网络自制综艺成在线视频新战场</a>
+								</li>
+								<li>
+									<span class="listnum "></span>
+									<a href="# ">土豪金的共享单车也倒闭了！网友：押金取不出</a>
+								</li>
+								<li>
+									<span class="listnum "></span>
+									<a href="# ">被贾跃亭抽血62亿，乐视网现金枯竭生死一线 -乐视网半年报分</a>
+								</li>
+								<li>
+									<span class="listnum "></span>
+									<a href="# ">12年一轮回，分类信息的价值回归</a>
+								</li>
+							</ul>
+						</div>
+						<script>
+							var spans2 = document.getElementById("num2 ").getElementsByClassName('listnum');
+							for(var i = 0; i < spans2.length; i++) {
+								spans2[i].style.backgroundPosition = 0 + 'px ' + -i * 18 + 'px';
+							}
+						</script>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="column w clearfix ">
+			<div class="china ">
+				<div class="hd ">
+					<h3>
+							<a href="# ">图片新闻</a>
+							<span class="en ">PHOTOS</span>
+						</h3>
+				</div>
+			</div>
+			<div class="photo ">
+				<div class="imgBottom ">
+					<div class="imglist " style="margin-right: 10px; ">
+						<a href="# "><img src="img/0ff41bd5ad6eddc4d31cca3333dbb6fd5366337a.jpg "></a>
+						<a class="txt " href="# ">人设卖太过的明星都有谁</a>
+					</div>
+					<div class="imglist " style="margin-right: 10px; ">
+						<a href="# "><img src="img/2f738bd4b31c87011ee9cd2e2d7f9e2f0608ff9f.jpg "></a>
+						<a class="txt " href="# ">燃爆！英举行诺丁山狂欢节</a>
+					</div>
+					<div class="imglist " style="margin-right: 10px; ">
+						<a href="# "><img src="img/3801213fb80e7bec7ce87b29252eb9389a506bc3.jpg "></a>
+						<a class="txt " href="# ">日本相扑壮士赤身肉搏</a>
+					</div>
+					<div class="imglist " style="margin-right: 10px; ">
+						<a href="# "><img src="img/6f061d950a7b0208b3a05a2968d9f2d3562cc889.jpg "></a>
+						<a class="txt " href="# ">新奥尔良原来真的没有烤翅</a>
+					</div>
+					<div class="imglist " style="margin-right: 10px; ">
+						<a href="# "><img src="img/91529822720e0cf33db737330046f21fbf09aab2.jpg "></a>
+						<a class="txt " href="# ">熊抱女友大赛白天战到天黑</a>
+					</div>
+					<div class="imglist " style="margin-right: 10px; ">
+						<a href="# "><img src="img/ac4bd11373f08202c098eff741fbfbedaa641beb.jpg "></a>
+						<a class="txt " href="# ">8月新机赏:哪款是你最爱</a>
+					</div>
+					<div class="imglist " style="margin-right: 10px; ">
+						<a href="# "><img src="img/b90e7bec54e736d1001bf1c091504fc2d46269e9.jpg "></a>
+						<a class="txt " href="# ">美国飓风 小狗"屯粮自救 "</a>
+					</div>
+					<div class="imglist " style="margin-right: 10px; ">
+						<a href="# "><img src="img/bd3eb13533fa828bf077f82bf71f4134960a5aa5.jpg "></a>
+						<a class="txt " href="# ">古装打戏最精彩的男星</a>
+					</div>
+					<div class="imglist " style="margin-right: 10px; ">
+						<a href="# "><img src="img/c8ea15ce36d3d539b1d4730b3087e950342ab008.jpg "></a>
+						<a class="txt " href="# ">四川大学惊现玫瑰花自取点</a>
+					</div>
+					<div class="imglist " style="margin-right: 10px; ">
+						<a href="# "><img src="img/d6ca7bcb0a46f21f4ebb219bfc246b600d33ae6f.jpg "></a>
+						<a class="txt " href="# ">捕鱼人2小时捞1吨</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="footer ">
+			<div class="bottom w clearfix ">
+				<div class="bot-left ">
+					<div class="bot-title ">
+						<i class="icon ">&nbsp;</i>
+						<span class="text ">更多精彩内容</span>
+					</div>
+					<div class="qrcode ">
+						<div class="img ">
+							<img src="img/1014720a_385933c.png " />
+						</div>
+						<div class="link ">
+							<a href="# ">Android版下载</a>
+							<a href="# ">iPhone版下载</a>
+						</div>
+						<p class="info ">扫描二维码, 收看更多新闻</p>
+					</div>
+				</div>
+				<div class="bot-center ">
+					<div class="bot-title ">
+						<i class="icon ">&nbsp;</i>
+						<span class="text ">相关功能</span>
+					</div>
+					<div class="item clearfix ">
+						<ul id="server ">
+							<li class="items1 ">
+								<a href="# ">新闻订阅</a>
+							</li>
+							<li class="items2 ">
+								<a href="# ">个性化新闻</a>
+							</li>
+							<li class="items3 ">
+								<a href="# ">邮件新闻订阅</a>
+							</li>
+							<li class="items4 ">
+								<a href="# ">地区新闻</a>
+							</li>
+							<li class="items5 ">
+								<a href="# ">历史新闻</a>
+							</li>
+							<li class="items6 ">
+								<a href="# ">新闻免费代码</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="bot-right ">
+					<div class="bot-title ">
+						<i class="icon ">&nbsp;</i>
+						<span class="text ">百度新闻独家出品</span>
+					</div>
+					<ul>
+						<li>1. 新闻由机器选取每5分钟自动更新</li>
+						<li>2. 百度新闻搜索源于互联网新闻网站和频道，系统自动分类排序</li>
+						<li>3. 百度不刊登或转载任何完整的新闻内容</li>
+					</ul>
+				</div>
+			</div>
+			<div style="font-size:12px;text-align:center; ">
+				责任编辑：胡彦BN098 刘石娟BN068 谢建BN085 李芳雨BN091 储信艳BN087 焦碧碧BN084 禤聪BN095 王鑫BN060 崔超BN071 违法和不良信息举报电话：010-59922128
+			</div>
+			<div class="copy w ">
+				<a href="# ">投诉中心</a>
+				<span>京公网安备11000002000001号</span>
+				<a href="# ">互联网新闻信息服务许可</a>
+				<span>&copy;2017Baidu</span>
+				<a href="# ">使用百度前必读</a>
+				<a class="iconlinks iconlinks1 " href="# "></a>
+				<a class="iconlinks iconlinks2 " href="# "></a>
+				<a class="iconlinks iconlinks3 " href="# "></a>
+			</div>
+		</div>
+		<ul id="gotop">
+			<li class="report"></li>
+			<li class="report"></li>
+			<li class="report"></li>
+			<li class="report"></li>
+			<li class="report"></li>
+			<li class="report"></li>
+			<li class="report"></li>
+		</ul>
+		<script>
+			var gotops = document.getElementById("gotop").getElementsByTagName('li');
+			for(var i = 0; i < gotops.length; i++) {
+				gotops[i].style.backgroundPosition = 0 + 'px ' + -i * 50 + 'px';
+			}
+		</script>
+		<div id="login">
+			<div class="loginTitle">
+				<span class="titleTxt">登录百度账号</span>
+				<span class="loginClose"></span>
+			</div>
+			<div class="loginBody">
+				<p class="tel">
+					<a href="#">短信快捷登录</a>
+				</p>
+				<input class="userName" type="text" value="手机、邮箱、用户名" />
+				<input class="password" type="text" value="手机、邮箱、用户名" />
+				<p class="member"><input type="checkbox" checked="checked" />下次自动登录
+					<a href="#">登录遇到问题</a>
+				</p>
+				<p class="submit">
+					<a class="loginBtn" href="#">登录</a>
+				</p>
+				<p class="reg">
+					<a href="#">立即注册</a>
+				</p>
+			</div>
+			<script>
+				var denglv = document.getElementById("denglv");
+				var login = document.getElementById("login");
+				var loginClose = document.getElementsByClassName('loginClose')[0];
+				denglv.onclick = function() {
+					login.style.display = 'block';
+				}
+				loginClose.onclick = function() {
+					login.style.display = 'none';
+				}
+			</script>
+	</body>
+
+</html>
